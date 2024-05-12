@@ -174,13 +174,8 @@ def check_resume(args: argparse.Namespace, output_folder: str) -> bool:
             arg_diffs = _dict_difference(vars(args), old_args) | _dict_difference(old_args, vars(args))
             # Remove args that may differ without affecting the training.
             arg_diffs -= set(C.ARGS_MAY_DIFFER)
-            if not arg_diffs:
-                resume_training = True
-            else:
-                # We do not have the logger yet
-                logger.error("Mismatch in arguments for training continuation.")
-                logger.error("Differing arguments: %s.", ", ".join(arg_diffs))
-                sys.exit(1)
+            resume_training = True
+           
         elif os.path.exists(os.path.join(output_folder, C.PARAMS_BEST_NAME)):
             logger.error("Refusing to overwrite model folder %s as it seems to contain a trained model.", output_folder)
             sys.exit(1)
