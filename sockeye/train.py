@@ -958,7 +958,7 @@ def train(args: argparse.Namespace, custom_metrics_logger: Optional[Callable] = 
 
     check_arg_compatibility(args)
     output_folder = os.path.abspath(args.output)
-    resume_training = true
+    resume_training = True
 
     # In distributed mode, multiple workers (instances of sockeye.train) are
     # launched via torchrun. Each worker has a unique rank. Worker 0 is the
